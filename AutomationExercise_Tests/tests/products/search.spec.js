@@ -18,4 +18,3 @@ test('Buscar um Produto inexistente', async ({ page }) => {
 
   await expect(page.getByText('Searched Products')).toBeVisible();
 });
-
