@@ -134,7 +134,3 @@ npx playwright codegen <url>
 ## Objetivo
 
 Consolidar conhecimento prático em automação de testes com Playwright, testando tanto sites públicos de prática (Automation Exercise) quanto um projeto real (Anthera), servindo como base de estudo e referência pessoal.
-
----
-
-Feito por [Matheus Moura](https://github.com/Matheusmoura19) 🚀
