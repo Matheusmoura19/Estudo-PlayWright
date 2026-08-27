@@ -1,10 +1,19 @@
 import { test, expect } from '@playwright/test';
+import {startAdWatcher} from '../../helpers/closeButton';
+import { Email, Password } from '../../helpers/testCredentials';
+
+let stopWatcher;
+
+test.beforeEach(async ({ page }) => {
+  await page.goto('https://automationexercise.com');
+  stopWatcher = startAdWatcher(page);
+});
+
+test.afterEach(() => {
+  stopWatcher();
+});
 
 test('Criando conta de usuário', async ({ page }) => {
-
-  const Email = `test.user.1@email.com`;
-
-  await page.goto('https://automationexercise.com');
 
   // 1: Inicia o signup
   await page.getByRole('link', { name: ' Signup / Login' }).click();
@@ -41,10 +50,6 @@ test('Criando conta de usuário', async ({ page }) => {
 });
 
 test('Tentar criar conta com usuário existente', async ({ page }) => {
-    const Email = `test.user.1@email.com`;
-    const Password = 'Senha123';
-
-    await page.goto('https://automationexercise.com');
     
     await page.getByRole('link', { name: ' Signup / Login' }).click();
     await page.getByRole('textbox', { name: 'Name' }).fill('Test User');

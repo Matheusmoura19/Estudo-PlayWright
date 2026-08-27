@@ -1,7 +1,18 @@
 import {expect, test} from '@playwright/test';
+import {startAdWatcher} from '../../helpers/closeButton';
+
+let stopWatcher;
+
+test.beforeEach(async ({ page }) => {
+  await page.goto('https://automationexercise.com');
+  stopWatcher = startAdWatcher(page);
+});
+
+test.afterEach(() => {
+  stopWatcher();
+});
 
 test('Filtrar Produtos por Categoria "Women"', async ({ page }) => {
-  await page.goto('https://automationexercise.com');
 
   await page.getByRole('link', { name: ' Products' }).click();
   await page.getByRole('link', { name: 'Women' }).nth(0).click();
@@ -11,7 +22,6 @@ test('Filtrar Produtos por Categoria "Women"', async ({ page }) => {
 });
 
 test('Filtrar Produtos por Categoria "Men"', async ({ page }) => {
-  await page.goto('https://automationexercise.com');
 
   await page.getByRole('link', { name: ' Products' }).click();
   await page.getByRole('link', { name: 'Men' }).nth(1).click();
@@ -21,7 +31,6 @@ test('Filtrar Produtos por Categoria "Men"', async ({ page }) => {
 });
 
 test('Filtrar Produtos por Categoria "Kids"', async ({ page }) => { 
-  await page.goto('https://automationexercise.com');
   
   await page.getByRole('link', { name: ' Products' }).click();
   await page.getByRole('link', { name: 'Kids' }).nth(2).click();
@@ -31,7 +40,6 @@ test('Filtrar Produtos por Categoria "Kids"', async ({ page }) => {
 });
 
 test('Filtrar Produtos por Brand "Polo"', async ({ page }) => {
-  await page.goto('https://automationexercise.com');
   
   await page.getByRole('link', { name: ' Products' }).click();
   await page.getByRole('link', { name: 'Polo' }).click();
