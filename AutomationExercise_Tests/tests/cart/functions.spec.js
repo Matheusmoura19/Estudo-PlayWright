@@ -19,4 +19,9 @@ test('Adicionar um Produto ao carrinho', async ({ page }) => {
   await page.getByRole('button', { name: 'Add to cart' }).click();
 
   await expect(page.getByText('Your product has been added to cart.')).toBeVisible();
+
+  await page.getByRole('link', { name: 'View Cart' }).click();
+
+  await expect(page.getByText('Shopping Cart')).toBeVisible();
 });
+
